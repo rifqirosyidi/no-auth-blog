@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ type }} Post {% endblock title %}
+
+{% block content %}
+
+<h1 class="text-center p-4">List All Posts</h1>
+<div class="text-center">
+    <a href="{% url 'posts:create' %}" class="btn btn-primary">Create Post</a>
+</div>
+<hr>
+
+{% for post in all_posts %}
+<h1><a href="{% url 'posts:detail' post.slug %}">{{ post.title }}</a></h1>
+<img src="{{ post.image.url }}" class="img-fluid" alt="">
+<p><small>Created by : {{ post.author }}</small></p>
+<p>{{post.description}}</p>
+<hr>
+{% endfor %}
+
+{% endblock content %}
